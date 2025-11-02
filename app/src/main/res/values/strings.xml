@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Elements Translation</string>
+    <string name="input_hint">转换前</string>
+    <string name="result_hint">转换后</string>
+    <string name="en2el">英文转元素</string>
+    <string name="el2en">元素转英文</string>
+    <string name="copy">复制</string>
+    <string name="clear">清空</string>
+</resources>
