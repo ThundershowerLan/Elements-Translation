@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         binding.toElements.setOnClickListener(_ -> {
-            final var input = Optional.ofNullable(binding.inputEdit.getText()).map(Editable::toString).orElse("").split("");
+            final var input = Optional.ofNullable(binding.inputEdit.getText()).map(Editable::toString).map(String::toLowerCase).orElse("").split("");
             final var result = new StringBuilder();
 
             for (int index = 0; index < input.length; index++) {
                 if (input.length > index+1) {
-                    final var optional = Optional.ofNullable(toElement.get(input[index].toUpperCase() + input[index+1]));
+                    final var optional = Optional.ofNullable(toElement.get(input[index] + input[index+1]));
                     if (optional.isPresent()) {
                         result.append(optional.get());
                         index++;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                result.append(toElement.getOrDefault(input[index].toUpperCase(), input[index]));
+                result.append(toElement.getOrDefault(input[index], input[index]));
             }
 
             binding.resultEdit.setText(result);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             for (String word : input)
                 result.append(toEnglish.getOrDefault(word, word));
 
-            binding.resultEdit.setText(result.toString().toLowerCase());
+            binding.resultEdit.setText(result.toString());
         });
 
         binding.copy.setOnClickListener(_ -> ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).
